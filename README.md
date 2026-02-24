@@ -10,7 +10,9 @@ O sistema permite:
 - Login seguro com senha criptografada (bcrypt).
 - Controle de acesso por função (RBAC).
 - Interface com modo claro e escuro.
-- Backend em Express e frontend em Electron.
+- Backend em Dart e frontend em Flutter
+- Barra de pesquisas para produtos, clientes e encomendas
+- Auxílio por IA
 
 ## Problema
 
