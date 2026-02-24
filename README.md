@@ -3,6 +3,18 @@
 Sistema desenvolvido em Flutter
 Possui autenticação por CPF e senha com controle de acesso baseado em funções (Administrador, Gerente e Vendedor).
 
+## Problema
+
+A empresa Portas e Janelas utiliza um sistema de arquivamento antiquado: papel
+
+## Público
+
+Funcionários da empresa Portas e Janelas
+
+## Objetivo
+
+Um sistema de produtos com interface simples e eficiente para funcionários e gerentes da loja 
+
 ## Sobre o Projeto
 
 O sistema permite:
