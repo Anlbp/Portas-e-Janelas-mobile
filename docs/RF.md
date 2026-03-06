@@ -18,7 +18,7 @@ Usuário (Operário, Gerente, Admin)
 
 
 
-## RF02 – Gerenciamento de Produtos
+## RF02 - Gerenciamento de Produtos
 
 **Descrição:**  
 O sistema deve permitir o gerenciamento de produtos (portas e janelas), incluindo cadastro, edição, remoção e busca.
@@ -33,7 +33,7 @@ Operário, Gerente, Admin
 
 
 
-## RF03 – Recomendações com Inteligência Artificial
+## RF03 - Recomendações com Inteligência Artificial
 
 **Descrição:**  
 O sistema deve permitir que usuários utilizem uma ferramenta de inteligência artificial para obter recomendações de portas e janelas de acordo com as necessidades do cliente.
