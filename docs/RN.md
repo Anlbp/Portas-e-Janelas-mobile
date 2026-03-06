@@ -1,5 +1,5 @@
 # Regras de Negócio (RN)
-## Sistema de Gestão — Casa de Portas e Janelas
+## Sistema de Gestão - Casa de Portas e Janelas
 
 
 ## RN01 – Controle de Permissões de Usuário
