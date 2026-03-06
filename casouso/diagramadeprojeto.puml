@@ -1,0 +1,87 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor Operario
+actor Gerente
+actor Admin
+
+rectangle "Sistema de Gestão & Assistente IA" {
+
+  package "Acesso e Segurança" {
+    (Realizar Login)
+    (Recuperar Senha)
+    (Autenticação 2FA)
+    (Realizar Login) --> (Autenticação 2FA) : <<include>>
+    (Recuperar Senha) ..> (Realizar Login) : <<extend>>
+  }
+
+  package "Operações de Loja" {
+    (Gerenciar Produtos)
+    (Adicionar Produto)
+    (Editar Produto)
+    (Remover Produto)
+    (Buscar Produto)
+    (Visualizar Homepage)
+    
+    (Gerenciar Clientes)
+    (Adicionar Cliente)
+    (Editar Cliente)
+    (Remover Cliente)
+    (Buscar Cliente)
+  }
+
+  package "Inteligência Artificial (Assistente Virtual)" {
+    (Interagir com Chatbot IA)
+    (Consultar Especificações Técnicas) --|> (Interagir com Chatbot IA)
+    (Calcular Quantidade de Materiais) --|> (Interagir com Chatbot IA)
+    (Gerar Sugestões de Decoração e Móveis) --|> (Interagir com Chatbot IA)
+    (Analisar Tendências de Vendas/Estoque) ..> (Interagir com Chatbot IA) : <<extend>>
+    (Configurar Base de Conhecimento IA)
+  }
+
+  package "Gestão e Auditoria" {
+    (Visualizar Auditoria)
+    (Visualizar Analíticas)
+    (Configurações)
+  }
+}
+
+' Relacionamentos Operario
+Operario --> (Realizar Login)
+Operario --> (Visualizar Homepage)
+Operario --> (Adicionar Produto)
+Operario --> (Adicionar Cliente)
+Operario --> (Interagir com Chatbot IA) : "Dúvidas técnicas e cálculos"
+
+' Relacionamentos Gerente
+Gerente --> (Realizar Login)
+Gerente --> (Visualizar Homepage)
+Gerente --> (Gerenciar Produtos)
+Gerente --> (Gerenciar Clientes)
+Gerente --> (Visualizar Auditoria)
+Gerente --> (Visualizar Analíticas)
+Gerente --> (Analisar Tendências de Vendas/Estoque) : "Usa IA para insights"
+
+' Relacionamentos Admin
+Admin --> (Realizar Login)
+Admin --> (Visualizar Homepage)
+Admin --> (Gerenciar Produtos)
+Admin --> (Gerenciar Clientes)
+Admin --> (Visualizar Auditoria)
+Admin --> (Visualizar Analíticas)
+Admin --> (Configurações)
+Admin --> (Configurar Base de Conhecimento IA) : "Alimenta manuais e regras"
+
+' Herança/Inclusão de Produtos e Clientes
+(Gerenciar Produtos) --> (Adicionar Produto)
+(Gerenciar Produtos) --> (Editar Produto)
+(Gerenciar Produtos) --> (Remover Produto)
+(Gerenciar Produtos) --> (Buscar Produto)
+
+(Gerenciar Clientes) --> (Adicionar Cliente)
+(Gerenciar Clientes) --> (Editar Cliente)
+(Gerenciar Clientes) --> (Remover Cliente)
+(Gerenciar Clientes) --> (Buscar Cliente)
+
+@enduml
