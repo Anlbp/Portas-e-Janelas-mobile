@@ -12,7 +12,7 @@ O sistema permite:
 - Interface com modo claro e escuro.
 - Backend em Dart e frontend em Flutter
 - Barra de pesquisas para produtos, clientes e encomendas
-- Auxílio por IA
+- Recomendações IA de produtos baseadas em necessidades do cliente
 
 ## Problema
 
