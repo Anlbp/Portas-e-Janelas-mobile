@@ -3,7 +3,7 @@
 # Caso de Uso 1: Realizar Login
 
 **Caso de Uso:** Realizar Login  
-**Ator:** Usuário (Operário, Gerente, Admin)  
+**Ator:** Usuário (Vendedor, Gerente, Admin)  
 **Objetivo:** Permitir que o usuário acesse o sistema
 
 ## Pré-condições
@@ -80,7 +80,7 @@
 # Caso de Uso 3: Gerenciar Produtos
 
 **Caso de Uso:** Gerenciar Produtos  
-**Ator:** Operário, Gerente, Admin  
+**Ator:** Vendedor, Gerente, Admin  
 **Objetivo:** Permitir o cadastro e gerenciamento de produtos (portas e janelas)
 
 ## Pré-condições
@@ -107,7 +107,7 @@
 3. Usuário corrige as informações  
 
 ## Regras de Negócio
-- **RN04** Operários podem apenas adicionar produtos  
+- **RN04** Vendedores podem apenas adicionar produtos  
 - **RN05** Apenas gerente e administrador podem editar ou remover produtos  
 
 ## Requisitos Relacionados
@@ -121,7 +121,7 @@
 # Caso de Uso 4: Gerenciar Clientes
 
 **Caso de Uso:** Gerenciar Clientes  
-**Ator:** Operário, Gerente, Admin  
+**Ator:** Vendedor, Gerente, Admin  
 **Objetivo:** Permitir o cadastro e gerenciamento de clientes
 
 ## Pré-condições
@@ -147,7 +147,7 @@
 2. Sistema solicita correção  
 
 ## Regras de Negócio
-- **RN06** Operários podem apenas adicionar clientes  
+- **RN06** Vendedores podem apenas adicionar clientes  
 - **RN07** Apenas gerente e administrador podem editar ou remover clientes  
 
 ## Requisitos Relacionados
@@ -252,7 +252,7 @@
 # Caso de Uso 8: Recomendações com Inteligência Artificial
 
 **Caso de Uso:** Recomendações com Inteligência Artificial  
-**Ator:** Usuário (Operário, Gerente, Admin)  
+**Ator:** Usuário (Vendedor, Gerente, Admin)  
 **Objetivo:** Permitir que o sistema utilize inteligência artificial para gerar recomendações de portas e janelas de acordo com as necessidades do cliente
 
 ## Pré-condições
