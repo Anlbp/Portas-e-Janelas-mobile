@@ -1,4 +1,4 @@
-## Sistema de Gestão — Casa de Portas e Janelas
+## Sistema de Gestão - Casa de Portas e Janelas
 
 # Caso de Uso 1: Realizar Login
 
