@@ -40,7 +40,7 @@
 - **RF01** Autenticação de usuário  
 - **RNF01** Tempo de resposta máximo de 2 segundos  
 
----
+ 
 
 # Caso de Uso 2: Recuperar Senha
 
@@ -75,7 +75,7 @@
 - **RF02** Recuperação de senha  
 - **RNF02** Envio de e-mail em até 5 segundos  
 
----
+ 
 
 # Caso de Uso 3: Gerenciar Produtos
 
@@ -116,7 +116,7 @@
 - **RF05** Remoção de produtos  
 - **RNF03** Atualização de dados em até 3 segundos  
 
----
+ 
 
 # Caso de Uso 4: Gerenciar Clientes
 
@@ -155,7 +155,7 @@
 - **RF07** Edição de clientes  
 - **RF08** Remoção de clientes  
 
----
+ 
 
 # Caso de Uso 5: Visualizar Registro de Auditoria
 
@@ -186,7 +186,7 @@
 ## Requisitos Relacionados
 - **RF09** Registro de atividades do sistema  
 
----
+ 
 
 # Caso de Uso 6: Visualizar Analíticas
 
@@ -217,7 +217,7 @@
 ## Requisitos Relacionados
 - **RF10** Visualização de relatórios e gráficos  
 
----
+ 
 
 # Caso de Uso 7: Acessar Configurações
 
