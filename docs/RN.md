@@ -2,7 +2,7 @@
 ## Sistema de Gestão - Casa de Portas e Janelas
 
 
-## RN01 – Controle de Permissões de Usuário
+## RN01 - Controle de Permissões de Usuário
 
 **Descrição:**  
 O sistema deve aplicar diferentes níveis de permissão para cada tipo de usuário.
@@ -13,7 +13,7 @@ O sistema deve aplicar diferentes níveis de permissão para cada tipo de usuár
 - Administradores possuem **acesso total ao sistema**, incluindo configurações.
 
 
-## RN02 – Registro de Auditoria
+## RN02 - Registro de Auditoria
 
 **Descrição:**  
 O sistema deve registrar automaticamente todas as ações importantes realizadas pelos usuários.
@@ -24,7 +24,7 @@ O sistema deve registrar automaticamente todas as ações importantes realizadas
 - Apenas **Gerentes e Administradores** podem visualizar os registros de auditoria.
 
 
-## RN03 – Recomendações com Inteligência Artificial
+## RN03 - Recomendações com Inteligência Artificial
 
 **Descrição:**  
 O sistema deve gerar recomendações de portas e janelas com base nas informações fornecidas pelo usuário.
