@@ -248,3 +248,42 @@
 
 ## Requisitos Relacionados
 - **RF11** Gerenciamento de configurações  
+
+# Caso de Uso 8: Recomendações com Inteligência Artificial
+
+**Caso de Uso:** Recomendações com Inteligência Artificial  
+**Ator:** Usuário (Operário, Gerente, Admin)  
+**Objetivo:** Permitir que o sistema utilize inteligência artificial para gerar recomendações de portas e janelas de acordo com as necessidades do cliente
+
+## Pré-condições
+- Usuário deve estar autenticado no sistema  
+- Usuário deve possuir informações do cliente ou da necessidade do projeto
+
+## Pós-condições
+- Sistema apresenta recomendações de produtos adequados às necessidades informadas
+
+## Fluxo Principal
+1. Usuário acessa a ferramenta de recomendação com IA  
+2. Usuário descreve as necessidades do cliente (tipo de ambiente, medidas, estilo, orçamento, etc.)  
+3. Sistema envia a solicitação para o módulo de inteligência artificial  
+4. IA analisa as informações fornecidas  
+5. Sistema gera recomendações de portas e janelas adequadas  
+6. Usuário visualiza as sugestões e pode utilizá-las para orientar o cliente
+
+## Fluxos Alternativos
+
+### A1 – Informações insuficientes
+1. Sistema detecta falta de informações relevantes  
+2. Sistema solicita que o usuário forneça mais detalhes  
+
+### A2 – Falha na geração da recomendação
+1. Sistema detecta erro no processamento da IA  
+2. Sistema informa que não foi possível gerar recomendações no momento  
+
+## Regras de Negócio
+- **RN11** As recomendações devem ser baseadas nas características informadas pelo usuário  
+- **RN12** O sistema deve registrar a solicitação de recomendação para fins de auditoria  
+
+## Requisitos Relacionados
+- **RF12** Geração de recomendações com inteligência artificial  
+- **RNF04** Resposta da IA em até 5 segundos
