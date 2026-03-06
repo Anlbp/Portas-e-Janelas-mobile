@@ -22,12 +22,12 @@
 
 ## Fluxos Alternativos
 
-### A1 – Credenciais inválidas
+### A1 - Credenciais inválidas
 1. Sistema detecta erro nas credenciais  
 2. Sistema exibe mensagem de erro  
 3. Usuário retorna à tela de login  
 
-### A2 – Código 2FA inválido
+### A2 - Código 2FA inválido
 1. Sistema detecta código incorreto  
 2. Sistema exibe mensagem de erro  
 3. Usuário tenta novamente  
