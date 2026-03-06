@@ -1,9 +1,9 @@
 # Requisitos Funcionais (RF)
-## Sistema de Gestão — Casa de Portas e Janelas
+## Sistema de Gestão - Casa de Portas e Janelas
 
 
 
-## RF01 – Autenticação de Usuário
+## RF01 - Autenticação de Usuário
 
 **Descrição:**  
 O sistema deve permitir que usuários autenticados (Operário, Gerente e Admin) realizem login utilizando e-mail e senha.
