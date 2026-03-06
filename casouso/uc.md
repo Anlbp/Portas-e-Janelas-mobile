@@ -98,10 +98,10 @@
 
 ## Fluxos Alternativos
 
-### A1 – Produto não encontrado
+### A1 - Produto não encontrado
 1. Sistema informa que nenhum produto corresponde à busca  
 
-### A2 – Dados inválidos
+### A2 - Dados inválidos
 1. Sistema detecta erro nos dados informados  
 2. Sistema exibe mensagem de erro  
 3. Usuário corrige as informações  
