@@ -18,6 +18,10 @@ O sistema permite:
 
 A empresa Portas e Janelas utiliza um sistema de arquivamento antiquado: papel
 
+## Escopo
+
+A empresa deseja um aplicativo funcional e seguro de arquivamento e gerenciamento de produtos e clientes, com um sistema de localização eficiente e simples
+
 ## Público
 
 Funcionários da empresa Portas e Janelas
