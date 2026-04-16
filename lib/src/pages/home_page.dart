@@ -687,11 +687,7 @@ class _HomePageState extends State<HomePage> {
                             )
                           : ListView.separated(
                               itemCount: produtosFiltrados.length,
-<<<<<<< HEAD
-                              separatorBuilder: (_, __) =>
-=======
                               separatorBuilder: (_, _) =>
->>>>>>> 680e58d (Animação de entrada)
                                   const Divider(height: 1),
                               itemBuilder: (context, index) {
                                 final produto = produtosFiltrados[index];

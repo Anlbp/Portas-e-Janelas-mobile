@@ -257,7 +257,7 @@ class _LoginPageState extends State<LoginPage> {
                           'Entre com seu CPF e senha para acessar o FluxoLivre',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.9),
+                            color: Colors.white.withValues(alpha: 0.9),
                             fontSize: 14,
                           ),
                         ),
@@ -387,7 +387,7 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(height: 28),
                         TextButton(
                           onPressed: () => _toast('Suporte: suporte@fluxolivre.com'),
-                          child: Text('Suporte', style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 12)),
+                          child: Text('Suporte', style: TextStyle(color: Colors.white.withValues(alpha: 0.8), fontSize: 12)),
                         ),
                         const SizedBox(height: 16),
                         Row(
@@ -395,12 +395,12 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             TextButton(
                               onPressed: () => _toast('Termos de uso'),
-                              child: Text('Termos', style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 11)),
+                              child: Text('Termos', style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 11)),
                             ),
-                            Text(' | ', style: TextStyle(color: Colors.white.withOpacity(0.7))),
+                            Text(' | ', style: TextStyle(color: Colors.white.withValues(alpha: 0.7))),
                             TextButton(
                               onPressed: () => _toast('Política de privacidade'),
-                              child: Text('Privacidade', style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 11)),
+                              child: Text('Privacidade', style: TextStyle(color: Colors.white.withValues(alpha: 0.7), fontSize: 11)),
                             ),
                           ],
                         ),

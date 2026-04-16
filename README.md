@@ -21,10 +21,6 @@ Funcionários da empresa Portas e Janelas
 
 ## Objetivo
 
-Um sistema de produtos com interface simples e eficiente para funcionários e gerentes da loja 
-<<<<<<< HEAD
+Um sistema de produtos com interface simples e eficiente para funcionários e gerentes da loja
 
-
-NOTA: Nomeie a pasta para app_fluxolivre para evitar erros de compatibilidade
-=======
->>>>>>> 680e58d (Animação de entrada)
+NOTA: Nomeie a pasta para app_fluxolivre para evitar erros de compatibilidade.
