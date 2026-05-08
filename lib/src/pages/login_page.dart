@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:app_fluxolivre/src/pages/forgot_password_page.dart';
 import 'package:app_fluxolivre/src/pages/home_page.dart';
 import 'package:app_fluxolivre/src/services/auth_service.dart';
 import 'package:app_fluxolivre/src/widgets/password_strength_indicator.dart';
@@ -195,12 +194,6 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void _abrirEsqueciSenha() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const ForgotPasswordPage()),
-    );
-  }
-
   @override
   void dispose() {
     _bloqueioTimer?.cancel();
@@ -337,11 +330,6 @@ class _LoginPageState extends State<LoginPage> {
                             style: const TextStyle(color: Color(0xFFFFC107), fontWeight: FontWeight.w500),
                           ),
                         ],
-                        const SizedBox(height: 12),
-                        TextButton(
-                          onPressed: bloqueado ? null : _abrirEsqueciSenha,
-                          child: const Text('Esqueci minha senha', style: TextStyle(color: Color(0xFFFFC107))),
-                        ),
                         const SizedBox(height: 8),
                         Row(
                           children: [

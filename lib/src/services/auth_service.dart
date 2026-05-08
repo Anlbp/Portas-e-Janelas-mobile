@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// "DB" de usuários: CPF (apenas números) -> senha.
@@ -51,13 +52,17 @@ const String _keyLembrarMe = 'auth_lembrar_me';
 const String _keyCpfSalvo = 'auth_cpf_salvo';
 const String _keyFalhasConsecutivas = 'auth_falhas_consecutivas';
 const String _keyBloqueioAte = 'auth_bloqueio_ate';
+const String _keyUsuariosSalvos = 'auth_usuarios_cadastrados';
 const int kMaxFalhas = 10;
 const Duration kDuracaoBloqueio = Duration(hours: 1);
 
 class AuthService {
   static final AuthService _instance = AuthService._();
   factory AuthService() => _instance;
-  AuthService._();
+  AuthService._() {
+    // Carrega usuários salvos ao iniciar
+    _carregarUsuariosSalvos();
+  }
 
   SharedPreferences? _prefs;
   Future<SharedPreferences> get _storage async =>
@@ -163,6 +168,111 @@ class AuthService {
   Future<void> logout() async {
     // Limpa apenas sessão; opcionalmente manter "lembrar-me".
     // Se quiser limpar tudo: (await _storage).clear();
+  }
+
+  /// Carrega usuários salvos do SharedPreferences.
+  Future<void> _carregarUsuariosSalvos() async {
+    final prefs = await _storage;
+    final usuariosJson = prefs.getString(_keyUsuariosSalvos);
+    if (usuariosJson != null && usuariosJson.isNotEmpty) {
+      try {
+        final lista = jsonDecode(usuariosJson) as List<dynamic>;
+        for (final item in lista) {
+          final m = item as Map<String, dynamic>;
+          final cpf = m['cpf'] as String;
+          final senha = m['senha'] as String;
+          final nome = m['nome'] as String;
+          final roleStr = m['role'] as String;
+          UserRole? role;
+          for (final r in UserRole.values) {
+            if (r.name == roleStr) {
+              role = r;
+              break;
+            }
+          }
+          if (role != null) {
+            _dbUsuarios[cpf] = senha;
+            _dbPerfis[cpf] = UserProfile(
+              cpf: cpf,
+              nome: nome,
+              role: role,
+            );
+          }
+        }
+      } catch (_) {
+        // Ignora erro ao carregar
+      }
+    }
+  }
+
+  /// Salva usuários no SharedPreferences.
+  Future<void> _salvarUsuariosNoStorage() async {
+    final prefs = await _storage;
+    final lista = <Map<String, dynamic>>[];
+    for (final entry in _dbPerfis.entries) {
+      // Não salva usuários padrão (iniciais)
+      if (entry.value.role == UserRole.administrador && entry.value.nome == 'Administrador') continue;
+      if (entry.value.role == UserRole.gerente && entry.value.nome == 'Gerente') continue;
+      if (entry.value.role == UserRole.operario && entry.value.nome == 'Operário') continue;
+      
+      final senha = _dbUsuarios[entry.key] ?? '';
+      lista.add({
+        'cpf': entry.key,
+        'senha': senha,
+        'nome': entry.value.nome,
+        'role': entry.value.role.name,
+      });
+    }
+    await prefs.setString(_keyUsuariosSalvos, jsonEncode(lista));
+  }
+
+  /// Verifica se o CPF já está cadastrado.
+  bool cpfJaCadastrado(String cpf) {
+    final cpfNorm = normalizarCpf(cpf);
+    return _dbUsuarios.containsKey(cpfNorm);
+  }
+
+  /// Cria um novo usuário (apenas para administrador).
+  Future<AuthResult> criarUsuario({
+    required String cpf,
+    required String senha,
+    required String nome,
+    required UserRole role,
+  }) async {
+    final cpfNorm = normalizarCpf(cpf);
+    
+    if (!validarCpf(cpf)) {
+      return AuthResult.falha('CPF inválido. Deve ter 11 dígitos.');
+    }
+    
+    if (cpfJaCadastrado(cpf)) {
+      return AuthResult.falha('CPF já cadastrado.');
+    }
+    
+    if (senha.length < 6) {
+      return AuthResult.falha('Senha deve ter no mínimo 6 caracteres.');
+    }
+    
+    if (nome.trim().isEmpty) {
+      return AuthResult.falha('Nome não pode ser vazio.');
+    }
+    
+    _dbUsuarios[cpfNorm] = senha;
+    _dbPerfis[cpfNorm] = UserProfile(
+      cpf: cpfNorm,
+      nome: nome.trim(),
+      role: role,
+    );
+    
+    // Persiste no storage
+    await _salvarUsuariosNoStorage();
+    
+    return AuthResult.sucesso(_dbPerfis[cpfNorm]);
+  }
+
+  /// Lista todos os usuários cadastrados (apenas para administrador).
+  List<UserProfile> listarUsuarios() {
+    return _dbPerfis.values.toList();
   }
 }
 
