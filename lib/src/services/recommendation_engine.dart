@@ -97,6 +97,39 @@ Se podeAlterar for falso, **nunca** incluas $_marcadorAcao.
   String _systemPromptBase() => '''
 Você é o assistente IA da Fluxo Livre — especialistas em portas e janelas.
 
+**REGRAS DE NEGÓCIO OBRIGATÓRIAS:**
+1. Você SÓ pode responder perguntas relacionadas a:
+   - Portas (todos os tipos: aço, alumínio, madeira, MDF, vidro temperado)
+   - Janelas (todos os tipos: PVC, alumínio, correr, basculante, maxim-ar, vidro duplo/temperado)
+   - Serviços da Fluxo Livre (fabricação sob medida, instalação, garantia)
+   - Funcionalidades do aplicativo Fluxo Livre (estoque, orçamentos, atendimento)
+   - Recomendações técnicas para ambientes com dimensões e condições específicas
+
+2. VOCÊ NÃO PODE, SOB NENHUMA CIRCUNSTÂNCIA, responder a perguntas sobre:
+   - Esportes, futebol, times, placares
+   - Política, governo, eleições, partidos
+   - Religião, crenças, doutrinas
+   - Violência, armas, crimes, agressão
+   - Relacionamentos, namoro, sexualidade, conteúdo adulto
+   - Drogas, álcool, substâncias ilícitas
+   - Jogos de azar, apostas, cassino, tigrinho, fortune tiger
+   - Investimentos, criptomoedas, ações, bitcoin
+   - Culinária, receitas, gastronomia não relacionada ao escritório
+   - Fofocas de celebridades, novelas, BBB, reality shows
+   - Física quântica, matemática avançada (a menos que aplicada a portas/janelas)
+   - Histórias fictícias, piadas, contos
+   - Qualquer assunto totalmente fora do escopo de portas, janelas e aplicativo Fluxo Livre
+
+3. COMO PROCEDER SE O USUÁRIO PERGUNTAR SOBRE ASSUNTO PROIBIDO:
+   - Responda EDUCAMENTE e REDIRECIONE:
+   "Desculpe, trabalho exclusivamente com recomendações sobre portas, janelas e o aplicativo Fluxo Livre.
+   Posso ajudar com:
+   - Escolher porta/janela ideal para seu ambiente
+   - Dimensões, materiais e modelos
+   - Consultar estoque e preços
+   - Funcionalidades do app Fluxo Livre
+   Em que assunto sobre portas ou janelas posso ajudá-lo hoje?"
+
 **PRODUTOS (geral):**
 - Portas: aço galvanizado, alumínio, madeira/MDF, vidro temperado
 - Janelas: PVC, alumínio (correr, basculante, maxim-ar), vidro duplo/temperado
@@ -112,6 +145,13 @@ Você é o assistente IA da Fluxo Livre — especialistas em portas e janelas.
     required UserProfile perfil,
     required String linhasEstoque,
   }) async {
+    // Validação ANTES de enviar para a API - bloqueio rápido
+    if (_isAssuntoProibido(mensagemUsuario)) {
+      return IaAssistenteOutcome(
+        texto: _getMensagemBloqueio(mensagemUsuario),
+      );
+    }
+
     final textoFallbackConfig = _mensagemSemChave();
     if (textoFallbackConfig != null) {
       return IaAssistenteOutcome(texto: textoFallbackConfig);
@@ -182,6 +222,92 @@ Você é o assistente IA da Fluxo Livre — especialistas em portas e janelas.
       }
       return IaAssistenteOutcome(texto: _erroGroq('exceção', e.toString()));
     }
+  }
+
+  /// Verifica se o assunto da mensagem é proibido
+  bool _isAssuntoProibido(String mensagem) {
+    final msgLower = mensagem.toLowerCase();
+    
+    // Lista de palavras-chave proibidas
+    final proibidas = [
+      // Esportes
+      'futebol', 'fut', 'time', 'camisa', 'jogador', 'gol', 'placar', 'partida',
+      'copa', 'mundial', 'brasileirão', 'libertadores', 'nba', 'nfl', 'fórmula 1',
+      'corrida', 'atleta', 'esporte', 'basquete', 'volei', 'vôlei', 'tênis',
+      
+      // Política
+      'política', 'governo', 'presidente', 'prefeito', 'senador', 'deputado',
+      'eleição', 'voto', 'partido', 'lula', 'bolsonaro', 'político', 'senado',
+      'câmara', 'ministro', 'camara', 'vereador', 'município', 'estado',
+      
+      // Religião
+      'deus', 'jesus', 'igreja', 'religião', 'católico', 'evangélico', 'umbanda',
+      'candomblé', 'budismo', 'islamismo', 'crente', 'pastor', 'padre', 'bíblia',
+      'oração', 'rezar', 'fé', 'crença', 'espírita', 'religioso', 'cristão',
+      
+      // Violência/armas
+      'arma', 'tiro', 'morte', 'matar', 'assassinar', 'violência', 'assalto',
+      'roubo', 'facção', 'crime', 'criminoso', 'bandido', 'sequestro', 'agressão',
+      
+      // Relacionamentos/adulto
+      'namoro', 'namorar', 'ficar', 'pegar', 'transar', 'sexo', 'relacionamento',
+      'casamento', 'traição', 'trair', 'porn', 'pornô', 'nudes', 'adulto',
+      
+      // Drogas
+      'droga', 'maconha', 'cocaína', 'crack', 'loló', 'lança', 'bebida', 'álcool',
+      'cerveja', 'cachaça', 'whisky', 'vodka', 'entorpecente', 'ilícito', 'cheirar',
+      
+      // Jogos/apostas
+      'jogo', 'aposta', 'bet', 'cassino', 'tigrinho', 'fortune tiger', 'bingo',
+      'loteria', 'mega sena', 'lotofácil', 'poker', 'roleta', 'caça-níquel',
+      
+      // Investimentos/cripto
+      'investimento', 'cripto', 'bitcoin', 'ethereum', 'dogecoin', 'ação', 'bolsa',
+      'day trade', 'trader', 'renda fixa', 'variável', 'poupança', 'cdb', 'fii',
+      
+      // Culinária (fora do contexto)
+      'receita', 'cozinhar', 'comida', 'prato', 'ingrediente', 'tempero', 'frango',
+      'carne', 'arroz', 'feijão', 'lasanha', 'pizza', 'hambúrguer', 'sopa',
+      
+      // Fofocas/entretenimento
+      'bbb', 'big brother', 'famoso', 'celebridade', 'artista', 'novela', 'fofoca',
+      'fama', 'globo', 'record', 'sbt', 'tv', 'reality', 'fazenda', 'a fazenda',
+      
+      // Ciência avançada (fora do escopo)
+      'física quântica', 'buraco negro', 'teoria das cordas', 'relatividade',
+      'termodinâmica', 'cálculo diferencial', 'integral', 'equação',
+      
+      // Outros assuntos não relacionados
+      'piada', 'história fictícia', 'conto', 'lenda', 'mitologia', 'signo',
+      'horóscopo', 'astrologia', 'tarô', 'magia', 'feiticeiro', 'bruxaria'
+    ];
+    
+    for (final palavra in proibidas) {
+      if (msgLower.contains(palavra)) {
+        return true;
+      }
+    }
+    
+    return false;
+  }
+
+  /// Gera mensagem de bloqueio específica baseada no assunto detectado
+  String _getMensagemBloqueio(String mensagem) {
+    final msgLower = mensagem.toLowerCase();
+    
+    if (msgLower.contains('futebol') || msgLower.contains('time') || msgLower.contains('jogador')) {
+      return '⚽ Desculpe, não trabalho com informações sobre futebol ou esportes.\n\nSou especialista em **portas e janelas** da Fluxo Livre. Posso ajudar com:\n🔹 Portas de aço, alumínio, madeira ou vidro\n🔹 Janelas PVC, alumínio, basculantes\n🔹 Medidas, materiais e instalação\n\nEm que posso ajudar sobre portas ou janelas? 🚪🪟';
+    }
+    
+    if (msgLower.contains('política') || msgLower.contains('governo') || msgLower.contains('presidente')) {
+      return '🏛️ Desculpe, não comento sobre política.\n\nSou assistente especializado em **portas, janelas e aplicativo Fluxo Livre**.\n\nPosso te ajudar a escolher o produto ideal para sua casa ou empresa. Me diga:\n✅ Qual o ambiente (sala, quarto, cozinha)?\n✅ Quais as dimensões disponíveis?\n✅ Precisa de isolamento térmico/acústico?';
+    }
+    
+    if (msgLower.contains('jogo') || msgLower.contains('aposta') || msgLower.contains('tigrinho')) {
+      return '🎰 Desculpe, não posso ajudar com jogos de azar ou apostas.\n\nMeu propósito é auxiliar com **recomendações técnicas de portas e janelas** para seu projeto.\n\nCompartilhe as dimensões do seu ambiente e te ajudo com o melhor modelo! 📏';
+    }
+    
+    return '🤖 Desculpe, atendo apenas perguntas sobre **portas, janelas e o aplicativo Fluxo Livre**.\n\nPosso ajudar com:\n🚪 Tipos de porta (aço, alumínio, madeira, MDF, vidro temperado)\n🪟 Tipos de janela (PVC, alumínio, correr, basculante, maxim-ar)\n📐 Recomendações por ambiente, dimensões e condições\n📦 Consulta de estoque, preços e disponibilidade\n🔧 Fabricação sob medida e instalação\n\nEm que assunto sobre portas ou janelas posso ajudá-lo hoje? 😊';
   }
 
   IaAssistenteOutcome _extrairOutcome(String raw, {required bool podeAlterar}) {
