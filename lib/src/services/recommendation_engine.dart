@@ -95,14 +95,14 @@ Se podeAlterar for falso, **nunca** incluas $_marcadorAcao.
 ''';
 
   String _systemPromptBase() => '''
-Você é o assistente IA da Fluxo Livre — especialistas em portas e janelas.
+Você é o assistente IA da Casa Portas e Janelas — especialistas em portas e janelas.
 
 **REGRAS DE NEGÓCIO OBRIGATÓRIAS:**
 1. Você SÓ pode responder perguntas relacionadas a:
    - Portas (todos os tipos: aço, alumínio, madeira, MDF, vidro temperado)
    - Janelas (todos os tipos: PVC, alumínio, correr, basculante, maxim-ar, vidro duplo/temperado)
-   - Serviços da Fluxo Livre (fabricação sob medida, instalação, garantia)
-   - Funcionalidades do aplicativo Fluxo Livre (estoque, orçamentos, atendimento)
+   - Serviços da Casa Portas e Janelas (fabricação sob medida, instalação, garantia)
+   - Funcionalidades do aplicativo Casa Portas e Janelas (estoque, orçamentos, atendimento)
    - Recomendações técnicas para ambientes com dimensões e condições específicas
 
 2. VOCÊ NÃO PODE, SOB NENHUMA CIRCUNSTÂNCIA, responder a perguntas sobre:
@@ -118,16 +118,16 @@ Você é o assistente IA da Fluxo Livre — especialistas em portas e janelas.
    - Fofocas de celebridades, novelas, BBB, reality shows
    - Física quântica, matemática avançada (a menos que aplicada a portas/janelas)
    - Histórias fictícias, piadas, contos
-   - Qualquer assunto totalmente fora do escopo de portas, janelas e aplicativo Fluxo Livre
+   - Qualquer assunto totalmente fora do escopo de portas, janelas e aplicativo Casa Portas e Janelas
 
 3. COMO PROCEDER SE O USUÁRIO PERGUNTAR SOBRE ASSUNTO PROIBIDO:
    - Responda EDUCAMENTE e REDIRECIONE:
-   "Desculpe, trabalho exclusivamente com recomendações sobre portas, janelas e o aplicativo Fluxo Livre.
+   "Desculpe, trabalho exclusivamente com recomendações sobre portas, janelas e o aplicativo Casa Portas e Janelas.
    Posso ajudar com:
    - Escolher porta/janela ideal para seu ambiente
    - Dimensões, materiais e modelos
    - Consultar estoque e preços
-   - Funcionalidades do app Fluxo Livre
+   - Funcionalidades do app Casa Portas e Janelas
    Em que assunto sobre portas ou janelas posso ajudá-lo hoje?"
 
 **PRODUTOS (geral):**
@@ -296,18 +296,18 @@ Você é o assistente IA da Fluxo Livre — especialistas em portas e janelas.
     final msgLower = mensagem.toLowerCase();
     
     if (msgLower.contains('futebol') || msgLower.contains('time') || msgLower.contains('jogador')) {
-      return '⚽ Desculpe, não trabalho com informações sobre futebol ou esportes.\n\nSou especialista em **portas e janelas** da Fluxo Livre. Posso ajudar com:\n🔹 Portas de aço, alumínio, madeira ou vidro\n🔹 Janelas PVC, alumínio, basculantes\n🔹 Medidas, materiais e instalação\n\nEm que posso ajudar sobre portas ou janelas? 🚪🪟';
+      return '⚽ Desculpe, não trabalho com informações sobre futebol ou esportes.\n\nSou especialista em **portas e janelas** da Casa Portas e Janelas. Posso ajudar com:\n🔹 Portas de aço, alumínio, madeira ou vidro\n🔹 Janelas PVC, alumínio, basculantes\n🔹 Medidas, materiais e instalação\n\nEm que posso ajudar sobre portas ou janelas? 🚪🪟';
     }
     
     if (msgLower.contains('política') || msgLower.contains('governo') || msgLower.contains('presidente')) {
-      return '🏛️ Desculpe, não comento sobre política.\n\nSou assistente especializado em **portas, janelas e aplicativo Fluxo Livre**.\n\nPosso te ajudar a escolher o produto ideal para sua casa ou empresa. Me diga:\n✅ Qual o ambiente (sala, quarto, cozinha)?\n✅ Quais as dimensões disponíveis?\n✅ Precisa de isolamento térmico/acústico?';
+      return '🏛️ Desculpe, não comento sobre política.\n\nSou assistente especializado em **portas, janelas e aplicativo Casa Portas e Janelas**.\n\nPosso te ajudar a escolher o produto ideal para sua casa ou empresa. Me diga:\n✅ Qual o ambiente (sala, quarto, cozinha)?\n✅ Quais as dimensões disponíveis?\n✅ Precisa de isolamento térmico/acústico?';
     }
     
     if (msgLower.contains('jogo') || msgLower.contains('aposta') || msgLower.contains('tigrinho')) {
       return '🎰 Desculpe, não posso ajudar com jogos de azar ou apostas.\n\nMeu propósito é auxiliar com **recomendações técnicas de portas e janelas** para seu projeto.\n\nCompartilhe as dimensões do seu ambiente e te ajudo com o melhor modelo! 📏';
     }
     
-    return '🤖 Desculpe, atendo apenas perguntas sobre **portas, janelas e o aplicativo Fluxo Livre**.\n\nPosso ajudar com:\n🚪 Tipos de porta (aço, alumínio, madeira, MDF, vidro temperado)\n🪟 Tipos de janela (PVC, alumínio, correr, basculante, maxim-ar)\n📐 Recomendações por ambiente, dimensões e condições\n📦 Consulta de estoque, preços e disponibilidade\n🔧 Fabricação sob medida e instalação\n\nEm que assunto sobre portas ou janelas posso ajudá-lo hoje? 😊';
+    return '🤖 Desculpe, atendo apenas perguntas sobre **portas, janelas e o aplicativo Casa Portas e Janelas**.\n\nPosso ajudar com:\n🚪 Tipos de porta (aço, alumínio, madeira, MDF, vidro temperado)\n🪟 Tipos de janela (PVC, alumínio, correr, basculante, maxim-ar)\n📐 Recomendações por ambiente, dimensões e condições\n📦 Consulta de estoque, preços e disponibilidade\n🔧 Fabricação sob medida e instalação\n\nEm que assunto sobre portas ou janelas posso ajudá-lo hoje? 😊';
   }
 
   IaAssistenteOutcome _extrairOutcome(String raw, {required bool podeAlterar}) {
